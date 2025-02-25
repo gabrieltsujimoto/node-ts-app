@@ -2,10 +2,18 @@ import { Request, Response } from 'express';
 import { UserService } from '../service/UserService';
 
 export class UserController {
+    userService: UserService
+        //Para testes
+        constructor(
+            userService = new UserService()
+        ){
+            this.userService = userService
+        }
+
+
     createUser = (req: Request, res: Response): any => {
         const userService = new UserService();
         const user = req.body;
-
         if (!user.name) {
             return res.status(400).json({ message: "Bad request: name invalid" })
         }
