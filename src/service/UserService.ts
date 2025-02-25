@@ -26,10 +26,20 @@ export class UserService {
             email,
         }
         this.db.push(user)
-        console.log('DB Actual', this.db)
+        console.log(`Novo usuario adicionado: ${user.name}`)
     }
 
     getAllUsers = () => {
-        return db
+        return this.db
     }
+
+    deleteUser = (email: string) => {
+        const index = db.findIndex(user => user.email === email)
+        this.db.map(data => {
+            this.db.indexOf(data) === index ? this.db.splice(index, 1) : ''
+        })
+
+        return this.db
+    }
+
 }
